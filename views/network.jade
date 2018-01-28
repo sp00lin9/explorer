@@ -31,7 +31,21 @@ block content
           { data: 'country', width: '25%'}
         ]
       });
-    });
+       $('#worldmap').vectorMap({
+          map: 'world_mill',
+          series: {
+          regions: [{
+            values: mapData,
+            scale: ['#FFD700', '#B39800'],
+            normalizeFunction: 'polynomial'
+            }]
+           },
+           onRegionTipShow: function(e, el, code){
+           el.html(el.html()+' (Connections - '+mapData[code]+')');
+            }
+           });
+          });
+  div#worldmap(style="width: 55%; height: 300px; margin-left: 22%; margin-bottom: 15%")   
   .col-md-12(style="margin-bottom: 4%")
     .row.text-center(style='margin-bottom:15px;')
       i #{settings.locale.net_warning}
